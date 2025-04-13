@@ -11,6 +11,7 @@ namespace Application.Mappings
         {
             CreateMap<TaskEntity, TaskDto>();
             CreateMap<CreateTaskDto, TaskEntity>();
+            CreateMap<UpdateTaskDto, TaskEntity>();
 
         }  
     }

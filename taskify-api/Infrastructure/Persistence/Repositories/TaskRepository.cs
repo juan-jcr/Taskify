@@ -20,7 +20,24 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task DeleteAsync(TaskEntity taskEntity)
+        {
+            _context.Tareas.Remove(taskEntity);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<TaskEntity>> GetAllAsync() => await _context.Tareas.ToListAsync();
- 
+
+        public async Task<TaskEntity?> GetByIdAsync(int id)
+        {
+            return await _context.Tareas.FindAsync(id);
+        }
+
+        public async Task UpdateAsync(TaskEntity taskEntity)
+        {
+            _context.Tareas.Update(taskEntity);
+            await _context.SaveChangesAsync();
+        }
+        
     }
 }
