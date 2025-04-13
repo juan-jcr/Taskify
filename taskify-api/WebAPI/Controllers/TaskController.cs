@@ -1,4 +1,5 @@
-﻿using Application.Services.TaskService;
+﻿using Application.DTOs.TaskDTO;
+using Application.Services.TaskService;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -19,6 +20,13 @@ namespace WebAPI.Controllers
         {
             var result = await _service.GetAllTasksAsync();
             return Ok(result);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateTaskDto taskDto)
+        {
+            var task = await _service.CreateAsync(taskDto);
+            return Ok(task);
         }
 
     }

@@ -10,7 +10,8 @@ namespace Application.Mappings
         public TaskProfile()
         {
             CreateMap<TaskEntity, TaskDto>();
-           
+            CreateMap<CreateTaskDto, TaskEntity>();
+
         }  
     }
    

@@ -14,6 +14,12 @@ namespace Infrastructure.Persistence.Repositories
             _context = context;
         }
 
+        public async Task AddAsync(TaskEntity taskEntity)
+        {
+            _context.Tareas.Add(taskEntity);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task<IEnumerable<TaskEntity>> GetAllAsync() => await _context.Tareas.ToListAsync();
  
     }

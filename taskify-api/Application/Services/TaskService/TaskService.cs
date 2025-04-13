@@ -1,5 +1,6 @@
 ﻿using Application.DTOs.TaskDTO;
 using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces;
 
 namespace Application.Services.TaskService
@@ -13,6 +14,13 @@ namespace Application.Services.TaskService
         {
             _taskRepository = taskRepository;
             _mapper = mapper;
+        }
+
+        public async Task<TaskDto> CreateAsync(CreateTaskDto taskDto)
+        {
+            var task = _mapper.Map<TaskEntity>(taskDto);
+            await _taskRepository.AddAsync(task);
+            return _mapper.Map<TaskDto>(task);
         }
 
         public async Task<IEnumerable<TaskDto>> GetAllTasksAsync()
