@@ -1,5 +1,4 @@
 ﻿using Application.DTOs.TaskDTO;
-using Application.Exceptions;
 using Application.Services.TaskService;
 using Microsoft.AspNetCore.Mvc;
 
@@ -33,44 +32,24 @@ namespace WebAPI.Controllers
 
         [HttpGet("{id}")]
         public async Task<ActionResult<TaskDto>> FindById(int id)
-        {
-            try
-            {
-                var task = await _service.GetByIdAsync(id);
-                return Ok(task);
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+        { 
+            var task = await _service.GetByIdAsync(id);
+            return Ok(task);
         }
 
         [HttpPut("{id}")]
         public async Task<ActionResult<TaskDto>> UpdateAsync(int id, UpdateTaskDto taskDto)
         {
-            try
-            {
-                var task = await _service.UpdateAsync(id, taskDto);
-                return Ok(task);
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            var task = await _service.UpdateAsync(id, taskDto);
+            return Ok(task);
         }
 
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {
-            try
-            {
-                await _service.DeleteAsync(id);
-                return NoContent();
-            }
-            catch (ResourceNotFoundException ex)
-            {
-                return NotFound(ex.Message);
-            }
+            await _service.DeleteAsync(id);
+            return NoContent();
+            
         }
     }
 }
