@@ -1,7 +1,7 @@
 ﻿using Application.DTOs.TaskDTO;
 
 
-namespace Application.Services.TaskService
+namespace Application.Interfaces
 {
     public interface ITaskService
     {

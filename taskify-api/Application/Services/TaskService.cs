@@ -2,9 +2,9 @@
 using Application.Exceptions;
 using AutoMapper;
 using Domain.Entities;
-using Domain.Interfaces;
+using Application.Interfaces;
 
-namespace Application.Services.TaskService
+namespace Application.Services
 {
     internal class TaskService : ITaskService
     {

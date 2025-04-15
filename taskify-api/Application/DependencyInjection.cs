@@ -1,5 +1,6 @@
 ﻿
-using Application.Services.TaskService;
+using Application.Interfaces;
+using Application.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 

@@ -1,5 +1,5 @@
 ﻿using Application.DTOs.TaskDTO;
-using Application.Services.TaskService;
+using Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
