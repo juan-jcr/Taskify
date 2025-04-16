@@ -1,5 +1,8 @@
-﻿using Application.DTOs.TaskDTO;
-using Application.Interfaces;
+﻿using Application.TaskList.Commands.CreateTask;
+using Application.TaskList.Commands.DeleteTask;
+using Application.TaskList.Queries.GetAllTasks;
+using Application.TaskList.Queries.GetTaskById;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -7,49 +10,51 @@ namespace WebAPI.Controllers
     [ApiController]
     [Route("api/task")]
     public class TaskController : ControllerBase
-    {
-        private readonly ITaskService _service;
+    {   
+        private readonly IMediator _mediator;
 
-        public TaskController(ITaskService taskService)
+        public TaskController(IMediator mediator)
         {
-            _service = taskService;
+            _mediator = mediator;
         }
-        
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _service.GetAllTasksAsync();
+            var result = await _mediator.Send(new GetAllTaksQuery());
             return Ok(result);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateTaskDto taskDto)
+        public async Task<IActionResult> Create(CreateTaskCommand command)
         {
-            var task = await _service.CreateAsync(taskDto);
-            return Ok(task);
-        }
-
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TaskDto>> FindById(int id)
-        { 
-            var task = await _service.GetByIdAsync(id);
+            var task = await _mediator.Send(command);
             return Ok(task);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<TaskDto>> UpdateAsync(int id, UpdateTaskDto taskDto)
+        public async Task<IActionResult> Update(int id, UpdateTaskCommand command)
         {
-            var task = await _service.UpdateAsync(id, taskDto);
+            if (id != command.Id) return BadRequest("ID mismatch");
+
+            var task = await _mediator.Send(command);
             return Ok(task);
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAsync(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteAsync(id);
+            await _mediator.Send(new DeleteTaskCommand(id));
             return NoContent();
-            
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var tarea = await _mediator.Send(new GetTaskByIdQuery(id));
+            return Ok(tarea);
+        }
+
+
     }
 }

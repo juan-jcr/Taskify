@@ -1,6 +1,5 @@
 ﻿
-using Application.Interfaces;
-using Application.Services;
+
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,8 +10,8 @@ namespace Application
         public static IServiceCollection AddApplication(this IServiceCollection services)
         {
        
-            services.AddScoped<ITaskService, TaskService>();
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 
             return services;
         }

@@ -1,7 +1,8 @@
-﻿namespace Application.DTOs.TaskDTO
+﻿namespace Application.Common.DTOs.TaskDTO
 {
-    public class UpdateTaskDto
+    public class TaskDto
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public DateTime DateOfCreation { get; set; }

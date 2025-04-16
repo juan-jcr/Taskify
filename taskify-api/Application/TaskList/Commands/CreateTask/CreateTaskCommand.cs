@@ -1,11 +1,13 @@
-﻿namespace Application.DTOs.TaskDTO
+﻿
+using Application.Common.DTOs.TaskDTO;
+using MediatR;
+
+namespace Application.TaskList.Commands.CreateTask
 {
-    public class TaskDto
+    public class CreateTaskCommand : IRequest<TaskDto>
     {
-        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         public DateTime DateOfCreation { get; set; }
-        public bool Completed { get; set; }
     }
 }

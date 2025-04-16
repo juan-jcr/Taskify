@@ -1,5 +1,5 @@
 ﻿
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
