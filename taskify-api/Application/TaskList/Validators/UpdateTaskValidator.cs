@@ -17,13 +17,7 @@ namespace Application.TaskList.Validators
                 .MaximumLength(150).MinimumLength(2)
                 .WithMessage("The title should be between 2 and 150 characters.");
 
-            RuleFor(task => task.DateOfCreation).GreaterThan(DateTime.Now)
-            .WithMessage("The date must be in the future.");
-
-            RuleFor(task => task.DateOfCreation).GreaterThan(DateTime.Now)
-            .WithMessage("The date must be in the future.");
-
-            RuleFor(task => task.Completed).NotEmpty().WithMessage("It can't be null");
+            
         }
     }
 }
