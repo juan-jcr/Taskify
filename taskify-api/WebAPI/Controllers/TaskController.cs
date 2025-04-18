@@ -26,14 +26,14 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateTaskCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTaskCommand command)
         {
             var task = await _mediator.Send(command);
             return Ok(task);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, UpdateTaskCommand command)
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateTaskCommand command)
         {
             if (id != command.Id) return BadRequest("ID mismatch");
 
