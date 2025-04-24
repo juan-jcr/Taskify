@@ -32,6 +32,8 @@ namespace WebAPI.Middleware
             var statusCode = exception switch
             {
                 ResourceNotFoundException => StatusCodes.Status404NotFound,
+                InvalidCredentialsException => StatusCodes.Status401Unauthorized,
+                AlreadyRegisteredException => StatusCodes.Status409Conflict,
                 ArgumentException => StatusCodes.Status400BadRequest,
                 _ => StatusCodes.Status500InternalServerError
             };

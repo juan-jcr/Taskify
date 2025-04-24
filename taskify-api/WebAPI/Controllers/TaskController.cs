@@ -3,12 +3,13 @@ using Application.TaskList.Commands.DeleteTask;
 using Application.TaskList.Queries.GetAllTasks;
 using Application.TaskList.Queries.GetTaskById;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/task")]
+    [Route("api/tasks")]
     public class TaskController : ControllerBase
     {   
         private readonly IMediator _mediator;
@@ -18,7 +19,7 @@ namespace WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet]
+        [HttpGet, Authorize]
         public async Task<IActionResult> GetAll()
         {
             var result = await _mediator.Send(new GetAllTaksQuery());
