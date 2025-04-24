@@ -11,10 +11,12 @@ namespace Infrastructure.Persistence
         {
         }
         public DbSet<TaskEntity> Tareas => Set<TaskEntity>();
+        public DbSet<UserEntity> Users => Set<UserEntity>();
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new TaskConfiguration());
+            modelBuilder.ApplyConfiguration(new UserConfiguration());
         }
 
     }
