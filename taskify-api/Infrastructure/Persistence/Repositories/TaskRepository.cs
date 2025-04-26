@@ -7,10 +7,12 @@ namespace Infrastructure.Persistence.Repositories
     internal class TaskRepository : ITaskRepository
     {
         private readonly AppDbContext _context;
+        private readonly ICurrentUserService _currentUserService;
 
-        public TaskRepository(AppDbContext context)
+        public TaskRepository(AppDbContext context, ICurrentUserService currentUserService)
         {
             _context = context;
+            _currentUserService = currentUserService;
         }
 
         public async Task AddAsync(TaskEntity taskEntity)
@@ -25,11 +27,18 @@ namespace Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<TaskEntity>> GetAllAsync() => await _context.Tareas.ToListAsync();
+        public async Task<IEnumerable<TaskEntity>> GetAllAsync()
+        {
+            return await _context.Tareas
+                .Where(t => t.UserId == Convert.ToInt32(_currentUserService.UserId))
+                .ToListAsync();
+        }
 
         public async Task<TaskEntity?> GetByIdAsync(int id)
         {
-            return await _context.Tareas.FindAsync(id);
+            var userId = Convert.ToInt32(_currentUserService.UserId);
+            return await _context.Tareas
+                .FirstOrDefaultAsync(t => t.Id == id && t.UserId == userId);
         }
 
         public async Task UpdateAsync(TaskEntity taskEntity)

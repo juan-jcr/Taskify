@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/tasks")]
     public class TaskController : ControllerBase
     {   
@@ -19,7 +20,7 @@ namespace WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpGet, Authorize]
+        [HttpGet]
         public async Task<IActionResult> GetAll()
         {
             var result = await _mediator.Send(new GetAllTaksQuery());

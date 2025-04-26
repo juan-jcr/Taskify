@@ -1,4 +1,6 @@
-﻿namespace Application.Common.DTOs.TaskDTO
+﻿using Application.Auth.Commands.RegisterUser;
+
+namespace Application.Common.DTOs.TaskDTO
 {
     public class TaskDto
     {
