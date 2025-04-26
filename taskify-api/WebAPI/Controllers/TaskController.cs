@@ -31,7 +31,7 @@ namespace WebAPI.Controllers
         public async Task<IActionResult> Create([FromBody] CreateTaskCommand command)
         {
             var task = await _mediator.Send(command);
-            return Ok(task);
+            return StatusCode(StatusCodes.Status201Created, task);
         }
 
         [HttpPut("{id}")]
