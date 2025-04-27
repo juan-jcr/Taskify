@@ -39,6 +39,12 @@ https://taskifyapi.somee.com/api
 ```
 [Descargar colección Postman](./postman/Taskify.postman_collection.json)
 
+### Instrucciones
+
+1. Descargar el archivo .json de la colección
+2. Importarlo en Postman
+3. Configura la variable {{base_url}}
+
 Endpoints principales
 
 ### Auth
