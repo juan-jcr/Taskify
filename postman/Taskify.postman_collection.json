@@ -1,0 +1,608 @@
+{
+	"info": {
+		"_postman_id": "267faef7-2eba-4cc6-98ed-c2d528b4236c",
+		"name": "Taskify",
+		"description": "HAR To Postman Generated Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34700834"
+	},
+	"item": [
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "List tasks",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NTE2OH0.vFShdKkYRQmky_RR1PuHKBWo24wpExSDD-gmczc3Cyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/tasks",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NDcxNH0._1tiy3To6xlqpdosrNKiIiLgdlTNiW_DFbzMiKmiw0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"title\": \"Hacer ejercicio\",\r\n\t\"description\": \"Hacer ejercio en la mañana\",\r\n\t\"dateOfCreation\": \"2025-04-29\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/tasks",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfully / 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/tasks",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"tasks"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Apr 2025 21:56:16 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "application/json; charset=utf-8 content type is not supported in the response body"
+						}
+					]
+				},
+				{
+					"name": "Find by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJjYXN0YW5lZGFAZ21haWwuY29tIiwiZXhwIjoxNzQ1NjMzMzQ4fQ.5ogysOcF8z5ZBBoMBZUqNYdvblc-4ZcKtoJvrfIpvqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/tasks/2",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "not found / 404",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/tasks/6",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"tasks",
+										"6"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Apr 2025 02:33:38 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"error\": \"Task not found\",\n \"statusCode\": 404\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJjYXN0YW5lZGFAZ21haWwuY29tIiwiZXhwIjoxNzQ1NjMzMzQ4fQ.5ogysOcF8z5ZBBoMBZUqNYdvblc-4ZcKtoJvrfIpvqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/tasks/1",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "no-content / 204",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/tasks/4",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"tasks",
+										"4"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Wed, 16 Apr 2025 22:26:53 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "update by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NTE2OH0.vFShdKkYRQmky_RR1PuHKBWo24wpExSDD-gmczc3Cyw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": 4,\r\n        \"title\": \"Leer\",\r\n        \"description\": \"Leer un libro de novela\",\r\n        \"dateOfCreation\": \"2025-04-27T00:00:00\",\r\n        \"completed\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/tasks/4",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"4"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfully / 200",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/tasks/2",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"tasks",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Apr 2025 21:56:56 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "application/json; charset=utf-8 content type is not supported in the response body"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\r\n    \"email\": \"daniela@gmail.com\",\r\n    \"password\": \"2850\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "successfully / 200",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/users/login",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 23 Apr 2025 01:24:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "application/json; charset=utf-8 content type is not supported in the response body"
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "User-Agent",
+								"value": "insomnia/11.0.2"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Daniela\",\r\n    \"email\": \"daniela@gmail.com\",\r\n    \"password\": \"2850\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://taskifyapi.somee.com/api/auth/register",
+							"protocol": "https",
+							"host": [
+								"taskifyapi",
+								"somee",
+								"com"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": " / 409",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "User-Agent",
+										"value": "insomnia/11.0.2"
+									}
+								],
+								"url": {
+									"raw": "{{baseURL1}}/api/users/register",
+									"host": [
+										"{{baseURL1}}"
+									],
+									"path": [
+										"api",
+										"users",
+										"register"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 22 Apr 2025 21:57:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"error\": \"Email already registered\",\n \"statusCode\": 409\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL1",
+			"value": "http://localhost:5146",
+			"type": "any"
+		}
+	]
+}
