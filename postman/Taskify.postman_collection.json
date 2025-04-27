@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "267faef7-2eba-4cc6-98ed-c2d528b4236c",
+		"_postman_id": "a90311bd-9a58-4871-8ef3-3919ab7e3073",
 		"name": "Taskify",
 		"description": "HAR To Postman Generated Collection",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
@@ -13,16 +13,6 @@
 				{
 					"name": "List tasks",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NTE2OH0.vFShdKkYRQmky_RR1PuHKBWo24wpExSDD-gmczc3Cyw",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -33,15 +23,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/tasks",
-							"protocol": "https",
+							"raw": "{{base_url}}/tasks",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"tasks"
 							]
 						}
@@ -51,16 +37,6 @@
 				{
 					"name": "add task",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NDcxNH0._1tiy3To6xlqpdosrNKiIiLgdlTNiW_DFbzMiKmiw0A",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [
 							{
@@ -74,7 +50,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"title\": \"Hacer ejercicio\",\r\n\t\"description\": \"Hacer ejercio en la mañana\",\r\n\t\"dateOfCreation\": \"2025-04-29\"\r\n}",
+							"raw": "{\r\n\t\"title\": \"Tarea uno\",\r\n\t\"description\": \"Test de Tarea\",\r\n\t\"dateOfCreation\": \"2025-04-29\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -82,15 +58,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/tasks",
-							"protocol": "https",
+							"raw": "{{base_url}}/tasks",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"tasks"
 							]
 						}
@@ -150,16 +122,6 @@
 				{
 					"name": "Find by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJjYXN0YW5lZGFAZ21haWwuY29tIiwiZXhwIjoxNzQ1NjMzMzQ4fQ.5ogysOcF8z5ZBBoMBZUqNYdvblc-4ZcKtoJvrfIpvqM",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [
 							{
@@ -168,17 +130,13 @@
 							}
 						],
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/tasks/2",
-							"protocol": "https",
+							"raw": "{{base_url}}/tasks/1",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"tasks",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -234,16 +192,6 @@
 				{
 					"name": "Delete task",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJjYXN0YW5lZGFAZ21haWwuY29tIiwiZXhwIjoxNzQ1NjMzMzQ4fQ.5ogysOcF8z5ZBBoMBZUqNYdvblc-4ZcKtoJvrfIpvqM",
-									"type": "string"
-								}
-							]
-						},
 						"method": "DELETE",
 						"header": [
 							{
@@ -252,15 +200,11 @@
 							}
 						],
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/tasks/1",
-							"protocol": "https",
+							"raw": "{{base_url}}/tasks/1",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"tasks",
 								"1"
 							]
@@ -310,16 +254,6 @@
 				{
 					"name": "update by id",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJodHRwOi8vd3d3LnczLm9yZy8yMDAxLzA0L3htbGRzaWctbW9yZSNobWFjLXNoYTI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjIiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9lbWFpbGFkZHJlc3MiOiJkYW5pZWxhQGdtYWlsLmNvbSIsImV4cCI6MTc0NTc4NTE2OH0.vFShdKkYRQmky_RR1PuHKBWo24wpExSDD-gmczc3Cyw",
-									"type": "string"
-								}
-							]
-						},
 						"method": "PUT",
 						"header": [
 							{
@@ -333,7 +267,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"id\": 4,\r\n        \"title\": \"Leer\",\r\n        \"description\": \"Leer un libro de novela\",\r\n        \"dateOfCreation\": \"2025-04-27T00:00:00\",\r\n        \"completed\": true\r\n}",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"title\": \"Tarea uno\",\r\n\t\"description\": \"Test de Tarea\",\r\n\t\"dateOfCreation\": \"2025-04-29\",\r\n    \"completed\": false\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -341,17 +275,13 @@
 							}
 						},
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/tasks/4",
-							"protocol": "https",
+							"raw": "{{base_url}}/tasks/1",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"tasks",
-								"4"
+								"1"
 							]
 						}
 					},
@@ -429,7 +359,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\r\n    \"email\": \"daniela@gmail.com\",\r\n    \"password\": \"2850\"\r\n}",
+							"raw": "{\r\n\t\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"text\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -437,15 +367,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/auth/login",
-							"protocol": "https",
+							"raw": "{{base_url}}/auth/login",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"auth",
 								"login"
 							]
@@ -520,7 +446,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Daniela\",\r\n    \"email\": \"daniela@gmail.com\",\r\n    \"password\": \"2850\"\r\n}",
+							"raw": "{\r\n    \"name\":\"text\",\r\n    \"email\": \"test@gmail.com\",\r\n    \"password\": \"text\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -528,15 +454,11 @@
 							}
 						},
 						"url": {
-							"raw": "https://taskifyapi.somee.com/api/auth/register",
-							"protocol": "https",
+							"raw": "{{base_url}}/auth/register",
 							"host": [
-								"taskifyapi",
-								"somee",
-								"com"
+								"{{base_url}}"
 							],
 							"path": [
-								"api",
 								"auth",
 								"register"
 							]
