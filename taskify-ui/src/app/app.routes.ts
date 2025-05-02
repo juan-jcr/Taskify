@@ -11,4 +11,8 @@ export const routes: Routes = [
       {path: 'register', component: RegisterComponent}
     ]
   },
+  {
+    path: 'home', loadComponent: () => import('./tasks/pages/tasks/tasks.component')
+  },
+  
 ];
