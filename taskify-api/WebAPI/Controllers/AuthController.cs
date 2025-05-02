@@ -1,6 +1,7 @@
 using Application.Auth.Commands.LoginUser;
 using Application.Auth.Commands.RegisterUser;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -28,7 +29,26 @@ namespace WebAPI.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(LoginCommand command)
         {
-            return Ok(new { Token = await _mediator.Send(command) });
+            var token = await _mediator.Send(command);
+            Response.Cookies.Append("access_token", token, new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true, 
+                SameSite = SameSiteMode.Lax,
+                Expires = DateTimeOffset.UtcNow.AddHours(1)
+            });
+            return Ok(new { message = "Login successful" });
+        }
+        
+        [Authorize]
+        [HttpGet("user-profile")]
+        public IActionResult GetCurrentUser()
+        {
+            return Ok(new
+            {
+                Email = User.Identity?.Name, 
+                Authenticated = true
+            });
         }
         
     }

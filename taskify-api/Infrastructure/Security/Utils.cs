@@ -22,7 +22,7 @@ namespace Infrastructure.Security
             var userClaims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email!)
+                new Claim(ClaimTypes.Name, user.Email!)
             };
             
             var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));

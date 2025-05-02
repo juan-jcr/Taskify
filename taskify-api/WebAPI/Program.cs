@@ -1,5 +1,6 @@
 using Infrastructure;
 using Application;
+using Microsoft.Identity.Client.Platforms.Features.DesktopOs.Kerberos;
 using Microsoft.OpenApi.Models;
 using WebAPI;
 using WebAPI.Middleware;
@@ -17,6 +18,17 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 builder.Services.AddSwaggerDocumentation();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("NewPolicy", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials(); 
+    });
+});
+
 
 
 var app = builder.Build();
@@ -31,7 +43,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseCors("NewPolicy");
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -28,13 +28,26 @@ namespace Infrastructure
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
 
-            services.AddAuthentication(option =>
+            services.AddAuthentication( option =>
                 {
                     option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
                 })
-                .AddJwtBearer(option =>
+                .AddJwtBearer("Bearer",option =>
                 {
+                    option.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+                    {
+                        OnMessageReceived = context =>
+                        {
+                            if (context.Request.Cookies.ContainsKey("access_token"))
+                            {
+                                context.Token = context.Request.Cookies["access_token"];
+                            }
+
+                            return Task.CompletedTask;
+                        }
+                    };
+                    
                     option.RequireHttpsMetadata = false;
                     option.SaveToken = true;
                     option.TokenValidationParameters = new TokenValidationParameters
