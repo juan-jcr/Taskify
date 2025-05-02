@@ -32,8 +32,8 @@ export default class LoginComponent {
     const credentials: LoginRequest = this.loginForm.value
 
     this.authService.login(credentials).subscribe({
-      next: (response) => {
-        localStorage.setItem('token', response.token);
+      next: () => {
+        console.log("exit")
         this.route.navigate(['/home'])
       },
       error: () => {
