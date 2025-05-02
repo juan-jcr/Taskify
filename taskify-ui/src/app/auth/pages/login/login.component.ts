@@ -8,7 +8,7 @@ import { LoginRequest } from '../../interface/auth.interface';
 @Component({
   selector: 'app-login',
   imports: [RouterLink, ReactiveFormsModule, CommonModule],
-  templateUrl: './login.component.html',
+  templateUrl: './login.component.html'
 })
 
 export default class LoginComponent {
@@ -22,10 +22,11 @@ export default class LoginComponent {
   })
 
   errorMessage : string | null = null;
+  submitted = false;
 
   onSubmit(){
+    this.submitted = true;
     if (this.loginForm.invalid) {
-      this.loginForm.markAllAsTouched();
       return;
     }
 

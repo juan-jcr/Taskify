@@ -15,11 +15,14 @@ export const routes: Routes = [
     loadComponent: () => import('./auth/layout/auth.layout.component'),
     children: [
       {path: 'login', component: LoginComponent, canActivate : [PublicGuard]},
-      {path: 'register', component: RegisterComponent}
-    ]
+      {path: 'register', component: RegisterComponent},
+      {path: '**', redirectTo: '/'}   ]
   },
   {
     path: 'home', loadComponent: () => import('./tasks/pages/tasks/tasks.component'), canActivate: [AuthGuard],
   },
+  {
+    path: '**', redirectTo: '/'
+  }
 
 ];
