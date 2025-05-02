@@ -20,8 +20,15 @@ export default class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   })
-  
+
+  errorMessage : string | null = null;
+
   onSubmit(){
+    if (this.loginForm.invalid) {
+      this.loginForm.markAllAsTouched();
+      return;
+    }
+
     const credentials: LoginRequest = this.loginForm.value
 
     this.authService.login(credentials).subscribe({
@@ -30,8 +37,16 @@ export default class LoginComponent {
         this.route.navigate(['/home'])
       },
       error: () => {
-        console.log("Error intente de nuevo")
+        this.errorMessage = 'Credenciales incorrectas, intente de nuevo.';
       }
   });
+  }
+
+  get email() {
+    return this.loginForm.get('email');
+  }
+
+  get password() {
+    return this.loginForm.get('password');
   }
 }
