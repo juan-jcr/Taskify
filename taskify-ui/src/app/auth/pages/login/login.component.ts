@@ -7,7 +7,7 @@ import { LoginRequest } from '../../interface/auth.interface';
 
 @Component({
   selector: 'app-login',
-  imports: [RouterLink, ReactiveFormsModule, CommonModule],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html'
 })
 
@@ -34,7 +34,6 @@ export default class LoginComponent {
 
     this.authService.login(credentials).subscribe({
       next: () => {
-        console.log("exit")
         this.route.navigate(['/home'])
       },
       error: () => {
