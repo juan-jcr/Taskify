@@ -22,16 +22,22 @@ export class RegisterComponent {
 
   successMessage = signal<string>('');
   errorMessage = signal<string>('');
+  isLoading = signal<boolean>(false);
+
   registered = false;
 
   register(){
     this.registered = true;
-    this.errorMessage.set('');
-    this.successMessage.set('');
 
     if(this.registerForm.invalid){
       return;
     }
+
+    this.errorMessage.set('');
+    this.successMessage.set('');
+
+    if (this.isLoading()) return;
+    this.isLoading.set(true);
 
     const credentials: RegisterRequest = this.registerForm.value;
 
@@ -39,17 +45,17 @@ export class RegisterComponent {
       next: () => {
         this.successMessage.set('¡Registro exitoso!');
         this.registerForm.reset();
-        this.registerForm.clearValidators()
-        
       },
       error : (error) => {
         this.errorMessage.set(error);
-      }
+        this.isLoading.set(false);
+      },
+      complete: () => {this.isLoading.set(false);}
     })
   }
-  
+
   get name (){
-    return this.registerForm.get('name')
+    return this.registerForm.get('name');
   }
 
   get email() {

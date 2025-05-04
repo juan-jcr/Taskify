@@ -1,8 +1,7 @@
-import { Component, inject } from '@angular/core';
+import {Component, inject, signal} from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { LoginRequest } from '../../interface/auth.interface';
 
 @Component({
@@ -12,23 +11,29 @@ import { LoginRequest } from '../../interface/auth.interface';
 })
 
 export default class LoginComponent {
+
   private readonly authService = inject(AuthService);
   private readonly formBuilder = inject(FormBuilder);
-  private readonly route = inject(Router)
+  private readonly route = inject(Router);
 
   loginForm : FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   })
 
+  isLoading = signal<boolean>(false);
   errorMessage : string | null = null;
   submitted = false;
 
   onSubmit(){
+
     this.submitted = true;
     if (this.loginForm.invalid) {
       return;
     }
+
+    if (this.isLoading()) return;
+    this.isLoading.set(true);
 
     const credentials: LoginRequest = this.loginForm.value
 
@@ -38,6 +43,10 @@ export default class LoginComponent {
       },
       error: () => {
         this.errorMessage = 'Credenciales incorrectas, intente de nuevo.';
+        this.isLoading.set(false);
+      },
+      complete: () => {
+        this.isLoading.set(false);
       }
   });
   }
