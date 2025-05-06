@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import { TaskListComponent } from '../../components/task-list/task-list.component';
 
 @Component({
@@ -7,5 +7,4 @@ import { TaskListComponent } from '../../components/task-list/task-list.componen
   templateUrl: './tasks-page.component.html',
 })
 export default class TasksPageComponent {
-
 }

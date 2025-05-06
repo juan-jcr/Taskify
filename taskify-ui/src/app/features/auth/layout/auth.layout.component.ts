@@ -5,8 +5,7 @@ import { RouterOutlet } from '@angular/router';
   selector: 'app-auth.layout',
   imports: [RouterOutlet],
   template: `<div
-    class="min-h-screen flex  justify-center
-   bg-gradient-to-r from-gray-100 via-gray-300"
+    class="min-h-screen flex  justify-center"
   >
     <div>
       <h1 class="text-4xl text-gray-700 my-14 tracking-[6px] font-semibold text-center">

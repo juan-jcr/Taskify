@@ -1,1 +1,15 @@
-<p>Lista de tareas</p>
+<div class="mx-auto px-4 py-8 w-[500px]">
+  @if(loading()){
+    <p class="text-center">Cargando tareas ...</p>
+  } @else if (error()){
+    <p>{{error()}}</p>
+  } @else {
+    <div class="space-y-3">
+      @for (task of tasks(); track task.id){
+        <app-task-item [task]="task"/>
+      } @empty {
+        <p>No hay tareas disponibles</p>
+      }
+    </div>
+  }
+</div>

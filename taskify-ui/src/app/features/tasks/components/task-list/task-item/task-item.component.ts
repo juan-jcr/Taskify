@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {TaskRequest} from '../../../interface/TaskRequest';
 
 @Component({
   selector: 'app-task-item',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   templateUrl: './task-item.component.html',
 })
 export class TaskItemComponent {
+  @Input({required:true}) task!: TaskRequest
 
 }
