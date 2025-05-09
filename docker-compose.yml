@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: taskify-sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=GaTo2850
+      - MSSQL_PID=Developer
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver-data:/var/opt/mssql
+
+  api:
+    build: ./taskify-api
+    container_name: taskify-api
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=Taskify;User=sa;Password=GaTo2850;TrustServerCertificate=True
+    volumes:
+      - ./taskify-api:/src
+    depends_on:
+      - sqlserver
+
+  web:
+    build: ./taskify-ui
+    container_name: taskify-ui
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./taskify-ui:/app
+      - /app/node_modules
+    environment:
+      - NG_APP_API_URL=http://api:5000
+    depends_on:
+      - api
+
+volumes:
+  sqlserver-data:

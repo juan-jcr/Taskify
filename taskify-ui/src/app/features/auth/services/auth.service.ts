@@ -6,7 +6,7 @@ import { RegisterRequest } from '../interface/register.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:5146/api/auth';
+  private apiUrl = 'http://localhost:5000/api/auth';
   private http = inject(HttpClient);
 
   login(credentials: LoginRequest) {

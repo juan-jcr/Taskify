@@ -1,0 +1,27 @@
+*
+
+# Permitir solo lo necesario
+!/.dockerignore
+!/src/
+!/angular.json
+!/package.json
+!/package-lock.json
+!/tsconfig.json
+!/Dockerfile
+
+# Excluir directorios innecesarios
+/.angular/
+/.vscode/
+/dist/
+/e2e/
+/node_modules/
+/.git/
+/.idea/
+/harmony/
+*.log
+*.tmp
+*.bak
+.DS_Store
+.env
+.env.*
+*.md
