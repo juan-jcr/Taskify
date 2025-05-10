@@ -1,6 +1,5 @@
 ﻿using Application.Common.DTOs.TaskDTO;
 using Application.TaskList.Commands.CreateTask;
-using Application.TaskList.Queries.GetAllTasks;
 using AutoMapper;
 using Domain.Entities;
 

@@ -6,8 +6,8 @@
     Inicie sesión si ya tiene una cuenta.
   </p>
 
-  @if(errorMessage){
-    <p class="text-red-500">{{errorMessage}}</p>
+  @if(errorMessage()){
+    <p class="text-red-500">{{errorMessage()}}</p>
   }
 
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mb-4">

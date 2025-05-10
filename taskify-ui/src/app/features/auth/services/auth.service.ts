@@ -3,20 +3,27 @@ import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../interface/auth.interface';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { RegisterRequest } from '../interface/register.interface';
+import {environment} from '../../../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'http://localhost:5000/api/auth';
   private http = inject(HttpClient);
 
   login(credentials: LoginRequest) {
-    return this.http.post(`${this.apiUrl}/login`, credentials, {
+    return this.http.post(`${environment.apiUrl}/auth/login`, credentials, {
       withCredentials: true,
-    });
+    }).pipe(
+      catchError(err => {
+        if(err.status === 401){
+          return throwError(() => "Credenciales incorrectas, intente de nuevo.");
+        }
+        return throwError(() => "Error desconocido");
+      })
+    );
   }
 
   registerUser(credentials: RegisterRequest) {
-    return this.http.post(`${this.apiUrl}/register`, credentials).pipe(
+    return this.http.post(`${environment.apiUrl}/auth/register`, credentials).pipe(
       catchError(error => {
         //Email already registered
         if (error.status === 409) {
@@ -29,7 +36,7 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.http
-      .get(`${this.apiUrl}/user-profile`, { withCredentials: true })
+      .get(`${environment.apiUrl}/auth/user-profile`, { withCredentials: true })
       .pipe(
         map(() => true),
         catchError(() => of(false))

@@ -11,7 +11,6 @@ namespace Application.TaskList.Commands.CreateTask
         public string Title { get; set; } = string.Empty;
         public string? Description { get; set; }
         
-        [JsonConverter(typeof(JsonDateConverter))]
-        public DateTime DateOfCreation { get; set; }
+        public DateTime? DateOfCreation { get; set; }
     }
 }

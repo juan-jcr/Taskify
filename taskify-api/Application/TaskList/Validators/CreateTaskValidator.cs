@@ -16,7 +16,7 @@ namespace Application.TaskList.Validators
                 .WithMessage("The title should be between 2 and 150 characters.");
 
             RuleFor(task => task.DateOfCreation)
-                .Must(date => date.Date >= DateTime.Today)
+                .Must(date => date?.Date >= DateTime.Today)
                 .WithMessage("The date must be today or a future date.");
 
         }

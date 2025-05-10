@@ -8,7 +8,7 @@ import { RouterOutlet } from '@angular/router';
     class="min-h-screen flex  justify-center"
   >
     <div>
-      <h1 class="text-4xl text-gray-700 my-14 tracking-[6px] font-semibold text-center">
+      <h1 class="text-4xl text-gray-700 my-6 tracking-[6px] font-semibold text-center">
         <span class="text-blue-500">Task</span>ify
       </h1>
       <router-outlet />

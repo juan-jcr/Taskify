@@ -22,7 +22,8 @@ export default class LoginComponent {
   })
 
   isLoading = signal<boolean>(false);
-  errorMessage : string | null = null;
+  errorMessage = signal<string>('');
+
   submitted = false;
 
   onSubmit(){
@@ -31,6 +32,7 @@ export default class LoginComponent {
     if (this.loginForm.invalid) {
       return;
     }
+    this.errorMessage.set('');
 
     if (this.isLoading()) return;
     this.isLoading.set(true);
@@ -41,8 +43,8 @@ export default class LoginComponent {
       next: () => {
         this.route.navigate(['/home'])
       },
-      error: () => {
-        this.errorMessage = 'Credenciales incorrectas, intente de nuevo.';
+      error: (err) => {
+        this.errorMessage.set(err);
         this.isLoading.set(false);
       },
       complete: () => {
