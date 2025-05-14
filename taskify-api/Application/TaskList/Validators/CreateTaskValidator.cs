@@ -8,16 +8,12 @@ namespace Application.TaskList.Validators
         public CreateTaskValidator( ) 
         {
             RuleFor(task => task.Title).NotEmpty().WithMessage("Title is required");
-            RuleFor(task => task.Title).MaximumLength(60).MinimumLength(2)
-                .WithMessage("The title should be between 2 and 60 characters.");
+            RuleFor(task => task.Title).MaximumLength(60)
+                .WithMessage("The title must not exceed 60 characters.");
 
             RuleFor(task => task.Description)
-                .MaximumLength(150).MinimumLength(2)
-                .WithMessage("The title should be between 2 and 150 characters.");
-
-            RuleFor(task => task.DateOfCreation)
-                .Must(date => date?.Date >= DateTime.Today)
-                .WithMessage("The date must be today or a future date.");
+                .MaximumLength(150)
+                .WithMessage("The description must not exceed 150 characters.");
 
         }
     }

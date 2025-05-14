@@ -1,6 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using Application.Common.Mappings;
-
+﻿
 namespace Application.Common.DTOs.TaskDTO
 {
     public class TaskDto

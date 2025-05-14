@@ -9,8 +9,8 @@ namespace WebAPI.Extension
         {
             using (var scope = app.ApplicationServices.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                //dbContext.Database.Migrate();
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>(); 
+                dbContext.Database.Migrate();
             }
         }
     }

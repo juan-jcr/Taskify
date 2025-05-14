@@ -1,3 +1,13 @@
-<div class="shadow-sm p-2.5 mt-1 rounded-b-xl rounded-r-2xl  cursor-pointer bg-white transition-colors">
-  {{task.title}}
+<div class="p-3 mt-1 bg-white  shadow rounded-md  cursor-pointer ">
+  <div class="flex justify-between">
+    <p class="text-gray-700 text-sm  font-semibold">{{task.title}}</p>
+
+      @if (task.dateOfCreation) {
+        <p class="text-blue-700 text-xs  font-normal rounded-md    bg-blue-100">
+        {{task.dateOfCreation | date}}
+        </p>
+      }
+
+  </div>
+
 </div>

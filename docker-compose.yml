@@ -21,7 +21,7 @@ services:
       - "5001:5001"
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=Taskify;User=sa;Password=GaTo2850;TrustServerCertificate=True
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TaskifyDb;User=sa;Password=GaTo2850;TrustServerCertificate=True
     volumes:
       - ./taskify-api:/src
     depends_on:

@@ -2,6 +2,6 @@ export interface TaskRequest {
   id: number;
   title: string;
   description: string;
-  dateOfCreation: Date;
+  dateOfCreation:null | string;
   completed: boolean;
 }
