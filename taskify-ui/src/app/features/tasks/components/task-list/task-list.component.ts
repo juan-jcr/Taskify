@@ -25,12 +25,30 @@ export class TaskListComponent {
 
     this.taskService.getTasks().subscribe({
       next: tasks => {
-        this.tasks = signal(tasks);
-        this.loading = signal(false);
+        this.tasks.set(tasks);
+        this.loading.set(false);
       },
       error: error => {
         this.error.set("Error al cargar las tareas");
+        this.loading.set(false);
       }
     })
+  }
+
+  onToggleCompleted(task: TaskRequest): void {
+    const updatedTask = { ...task, completed: !task.completed };
+
+    this.tasks.update(tasks =>
+      tasks.map(t => t.id === task.id ? updatedTask : t)
+    );
+
+    this.taskService.updateTask(updatedTask).subscribe({
+      error:() => {
+        this.error.set("Error al actualizar las tareas");
+        this.tasks.update(tasks =>
+          tasks.map(t => t.id === task.id ? task : t)
+        );
+      }
+    });
   }
 }

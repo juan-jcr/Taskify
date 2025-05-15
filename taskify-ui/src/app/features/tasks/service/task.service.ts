@@ -2,7 +2,7 @@ import {inject, Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {TaskRequest} from '../interface/TaskRequest';
 import {environment} from '../../../../environments/environment';
-import {Observable} from 'rxjs';
+import {catchError, Observable, tap, throwError} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class TaskService {
@@ -14,5 +14,12 @@ export class TaskService {
    addTask(taskRequest: TaskRequest): Observable<TaskRequest> {
     return this.httpClient.post<TaskRequest>(`${environment.apiUrl}/tasks`, taskRequest, {withCredentials: true});
    }
+
+  updateTask(taskRequest: Partial<TaskRequest>): Observable<TaskRequest> {
+    return this.httpClient.put<TaskRequest>(
+      `${environment.apiUrl}/tasks/${taskRequest.id}`, taskRequest, { withCredentials: true
+      })
+
+  }
 
 }

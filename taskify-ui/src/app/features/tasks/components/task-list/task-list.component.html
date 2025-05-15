@@ -1,15 +1,13 @@
-<div class="w-[600px]">
-  @if(loading()){
-    <p class="text-center">Cargando tareas ...</p>
-  } @else if (error()){
-    <p>{{error()}}</p>
-  } @else {
-    <div class="space-y-3">
-      @for (task of tasks(); track task.id){
-        <app-task-item [task]="task"/>
-      } @empty {
-        <p>No hay tareas disponibles</p>
-      }
-    </div>
+@if(loading()){
+<p class="text-center">Cargando tareas ...</p>
+} @else if (error()){
+<p class="text-red-500 text-center">{{ error() }}</p>
+} @else {
+<div class="">
+  @for (task of tasks(); track task.id){
+  <app-task-item [task]="task" (toggleCompleted)="onToggleCompleted($event)" />
+  } @empty {
+  <p class="text-center text-gray-500">No hay tareas disponibles</p>
   }
 </div>
+}

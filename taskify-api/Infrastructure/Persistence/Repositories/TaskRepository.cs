@@ -31,6 +31,7 @@ namespace Infrastructure.Persistence.Repositories
         {
             return await _context.Tareas
                 .Where(t => t.UserId == Convert.ToInt32(_currentUserService.UserId))
+                .OrderByDescending((t => t.Id))
                 .ToListAsync();
         }
 

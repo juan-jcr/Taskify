@@ -1,13 +1,21 @@
-<div class="p-3 mt-1 bg-white  shadow rounded-md  cursor-pointer ">
-  <div class="flex justify-between">
-    <p class="text-gray-700 text-sm  font-semibold">{{task.title}}</p>
-
-      @if (task.dateOfCreation) {
-        <p class="text-blue-700 text-xs  font-normal rounded-md    bg-blue-100">
-        {{task.dateOfCreation | date}}
-        </p>
-      }
-
+<div class="p-3 mt-1 bg-white shadow rounded-md cursor-pointer w-full">
+  <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
+    <div class="flex items-start gap-2">
+      <input
+        type="checkbox"
+        [checked]="task.completed"
+        (change)="onToggleCompleted()"
+        class="mt-1 h-3.5 w-3.5 cursor-pointer"
+      />
+      <p class="text-gray-700 text-sm font-semibold break-words"
+         [class.line-through]="task.completed">
+        {{ task.title }}
+      </p>
+    </div>
+    @if (task.dateOfCreation) {
+      <p class="text-blue-700 text-xs font-normal rounded-md bg-blue-100 px-2 py-0.5 w-fit">
+        {{ task.dateOfCreation | date }}
+      </p>
+    }
   </div>
-
 </div>
