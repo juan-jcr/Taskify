@@ -1,21 +1,36 @@
 <div class="p-3 mt-1 bg-white shadow rounded-md cursor-pointer w-full">
   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
     <div class="flex items-start gap-2">
-      <input
-        type="checkbox"
-        [checked]="task.completed"
-        (change)="onToggleCompleted()"
-        class="mt-1 h-3.5 w-3.5 cursor-pointer"
-      />
-      <p class="text-gray-700 text-sm font-semibold break-words"
-         [class.line-through]="task.completed">
+      <input type="checkbox" [checked]="task.completed" (change)="onToggleCompleted()"
+        class="mt-1 h-3.5 w-3.5 cursor-pointer" />
+      <p class="text-gray-700 text-sm font-semibold break-words" [class.line-through]="task.completed">
         {{ task.title }}
       </p>
     </div>
-    @if (task.dateOfCreation) {
+    <div class="flex flex-row gap-2 relative  text-left ">
+      @if (task.dateOfCreation) {
       <p class="text-blue-700 text-xs font-normal rounded-md bg-blue-100 px-2 py-0.5 w-fit">
         {{ task.dateOfCreation | date }}
       </p>
-    }
+      }
+      <button (click)="toggleDropdown()" class="text-gray-700 h-5 w-5 cursor-pointer hover:bg-violet-100 rounded-md">
+        <i class="fa-solid fa-ellipsis-vertical"></i>
+      </button>
+      @if(isOpen){
+      <div class="origin-top-right absolute -right-2 mt-9 w-40 rounded-md shadow-md bg-white  z-10">
+        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Editar</a>
+          <button (click)="onDeleteTask()"
+            class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer">
+            Eliminar
+          </button>
+
+
+        </div>
+      </div>
+      }
+    </div>
+
+
   </div>
 </div>

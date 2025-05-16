@@ -16,9 +16,11 @@ export class TaskListComponent {
   tasks = signal<TaskRequest[]>([]);
   loading = signal(false);
   error = signal<null | string>(null);
+
   constructor(){
     this.loadTasks();
   }
+  
   loadTasks(){
     this.loading.set(true);
     this.error.set(null);
@@ -50,5 +52,16 @@ export class TaskListComponent {
         );
       }
     });
+  }
+
+  onDeleteTask(taskId: number){
+    this.taskService.deleteTask(taskId).subscribe({
+      next: () => {
+        this.tasks.update(tasks => tasks.filter(t => t.id !== taskId));
+      },
+      error: () => {
+        this.error.set('Error al eliminar la tarea')
+      }
+    })
   }
 }

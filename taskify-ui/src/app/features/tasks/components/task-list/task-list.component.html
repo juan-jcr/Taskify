@@ -5,7 +5,8 @@
 } @else {
 <div class="">
   @for (task of tasks(); track task.id){
-  <app-task-item [task]="task" (toggleCompleted)="onToggleCompleted($event)" />
+  <app-task-item [task]="task" 
+  (toggleCompleted)="onToggleCompleted($event)" (deleteTask)="onDeleteTask($event)"/>
   } @empty {
   <p class="text-center text-gray-500">No hay tareas disponibles</p>
   }
