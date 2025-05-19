@@ -13,7 +13,7 @@ import {TaskRequest} from '../../interface/TaskRequest';
 
 @Component({
   selector: 'app-tasks-page',
-  imports: [TaskListComponent, FormsModule, ReactiveFormsModule],
+  imports: [TaskListComponent,  FormsModule, ReactiveFormsModule],
   templateUrl: './tasks-page.component.html',
 })
 export default class TasksPageComponent {
@@ -46,4 +46,5 @@ export default class TasksPageComponent {
       }
     })
   }
+
 }

@@ -2,12 +2,14 @@ import {Component, inject, signal} from '@angular/core';
 import {TaskService} from '../../service/task.service';
 import {TaskRequest} from '../../interface/TaskRequest';
 import {TaskItemComponent} from './task-item/task-item.component';
+import { TaskUpdateComponent } from "../task-update/task-update.component";
 
 @Component({
   selector: 'app-task-list',
   imports: [
-    TaskItemComponent
-  ],
+    TaskItemComponent,
+    TaskUpdateComponent
+],
   templateUrl: './task-list.component.html',
 })
 export class TaskListComponent {
@@ -16,6 +18,8 @@ export class TaskListComponent {
   tasks = signal<TaskRequest[]>([]);
   loading = signal(false);
   error = signal<null | string>(null);
+
+  selectedTask = signal<TaskRequest | null>(null);
 
   constructor(){
     this.loadTasks();
@@ -30,7 +34,7 @@ export class TaskListComponent {
         this.tasks.set(tasks);
         this.loading.set(false);
       },
-      error: error => {
+      error: () => {
         this.error.set("Error al cargar las tareas");
         this.loading.set(false);
       }
@@ -46,7 +50,7 @@ export class TaskListComponent {
 
     this.taskService.updateTask(updatedTask).subscribe({
       error:() => {
-        this.error.set("Error al actualizar las tareas");
+        this.error.set("Error al actualizar la tarea");
         this.tasks.update(tasks =>
           tasks.map(t => t.id === task.id ? task : t)
         );
@@ -63,5 +67,18 @@ export class TaskListComponent {
         this.error.set('Error al eliminar la tarea')
       }
     })
+  }
+  
+  onTaskSelected(task: TaskRequest) {
+    this.selectedTask.set(task);
+  }
+  
+  onCloseMenu(){
+    this.selectedTask.set(null);
+  }
+
+  onTaskUpdated(updatedTask: TaskRequest){
+    this.tasks.update(tasks => tasks.map(t => t.id === updatedTask.id ? updatedTask: t));
+    this.selectedTask.set(null);
   }
 }

@@ -1,8 +1,8 @@
-<div>
+<div >
   <!-- Component navbar -->
 
   <!-- Task -->
-  <div class="flex flex-col items-center gap-3.5 mt-12 px-4">
+  <div class="flex flex-col place-items-center gap-3.5 mt-12 px-4">
     <!-- Register task -->
     <form [formGroup]="taskForm" (ngSubmit)="submit()" class="w-full max-w-md sm:max-w-lg md:max-w-2xl">
       @if(errorMessage()){
@@ -53,5 +53,6 @@
       <app-task-list />
     </div>
   </div>
+  
 
 </div>
