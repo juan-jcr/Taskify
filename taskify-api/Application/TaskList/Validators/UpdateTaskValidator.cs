@@ -10,12 +10,11 @@ namespace Application.TaskList.Validators
             RuleFor(task => task.Id).NotEmpty().WithMessage("Id cannot be null");
 
             RuleFor(task => task.Title).NotEmpty().WithMessage("Title is required");
-            RuleFor(task => task.Title).MaximumLength(60).MinimumLength(2)
-                .WithMessage("The title should be between 2 and 60 characters.");
+            RuleFor(task => task.Title).MaximumLength(60).WithMessage("The title must be less than 60 characters");
 
             RuleFor(task => task.Description)
-                .MaximumLength(150).MinimumLength(2)
-                .WithMessage("The title should be between 2 and 150 characters.");
+                .MaximumLength(150)
+                .WithMessage("The description must be less than 150 characters");
 
             
         }

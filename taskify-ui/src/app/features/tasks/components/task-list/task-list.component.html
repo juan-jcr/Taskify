@@ -1,25 +1,36 @@
-@if(loading()){
+@if(loading){
 <p class="text-center">Cargando tareas ...</p>
-} @else if (error()){
-<p class="text-red-500 text-center">{{ error() }}</p>
-} @else {
-<div class=" max-w-md sm:max-w-lg md:max-w-2xl">
-  @for (task of tasks(); track task.id){
-  <app-task-item
-    [task]="task" 
-    (toggleCompleted)="onToggleCompleted($event)"
-    (deleteTask)="onDeleteTask($event)"
-    (taskSelected)="onTaskSelected($event)"
-    
-  />
-
-  } @empty {
-  <p class="text-center text-gray-500">No hay tareas disponibles</p>
-  }
+} @else if (error){
+<p class="text-red-500 text-center">{{ error }}</p>
+} @else { @for (task of tasks; track task.id){
+<div class="p-3 mt-1 bg-white shadow rounded-md cursor-pointer" (click)="selectTask(task)">
+  <div class="flex flex-row justify-between items-center">
+    <div class="flex gap-2 h-full">
+      <input type="checkbox" [checked]="task.completed" (change)="onToggleTask(task)"
+             (click)="$event.stopPropagation()"
+             class="mt-1 h-3.5 w-3.5 cursor-pointer" />
+      <p class="text-gray-700 text-sm font-semibold break-words" [class.line-through]="task.completed">
+        {{ task.title }}
+      </p>
+    </div>
+    <div class="flex flex-row gap-2 relative text-left">
+      @if (task.dateOfCreation) {
+      <p
+        class="text-blue-700 text-xs font-normal rounded-md bg-blue-100 px-2 py-0.5 w-fit"
+      >
+        {{ task.dateOfCreation | date }}
+      </p>
+      }
+      <button
+        class="text-red-700 h-5 w-5 hover:bg-red-100 rounded-md cursor-pointer transition-all"
+        (click)="onDeleteTask($event, task.id)"
+      >
+        <i class="fa-solid fa-trash"></i>
+      </button>
+    </div>
+  </div>
 </div>
-}
-<app-task-update 
-  [task]="selectedTask()"
-  (closeMenu)="onCloseMenu()"
-  (taskUpdated)="onTaskUpdated($event)"
-/>
+
+} @empty {
+<p class="text-center text-gray-500">No hay tareas disponibles</p>
+} }

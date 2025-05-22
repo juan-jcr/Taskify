@@ -4,6 +4,7 @@ import { LoginRequest } from '../interface/auth.interface';
 import { catchError, map, Observable, of, throwError } from 'rxjs';
 import { RegisterRequest } from '../interface/register.interface';
 import {environment} from '../../../../environments/environment';
+import {UserRequest} from '../interface/user.interface';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -36,10 +37,17 @@ export class AuthService {
 
   isAuthenticated(): Observable<boolean> {
     return this.http
-      .get(`${environment.apiUrl}/auth/user-profile`, { withCredentials: true })
+      .get(`${environment.apiUrl}/auth/isAuthenticated`, { withCredentials: true })
       .pipe(
         map(() => true),
         catchError(() => of(false))
       );
+  }
+  getProfileName() : Observable<UserRequest>{
+    return this.http.get<UserRequest>(`${environment.apiUrl}/auth/user-profile`, { withCredentials: true })
+  }
+
+  logout() {
+    return this.http.post(`${environment.apiUrl}/auth/logout`, {}, { withCredentials: true });
   }
 }

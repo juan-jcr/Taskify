@@ -13,13 +13,13 @@ export class TaskUpdateComponent {
   @Output() closeMenu = new EventEmitter<void>();
   @Output () taskUpdated = new EventEmitter<TaskRequest>();
 
-  private readonly taskService = inject(TaskService); 
+  private readonly taskService = inject(TaskService);
   private readonly fb = inject(FormBuilder);
 
   form: FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: [''],
-     dateOfCreation: [null],
+    dateOfCreation: [null],
     completed: [false]
   });
 
@@ -27,13 +27,13 @@ export class TaskUpdateComponent {
     if (this.task) {
       const formattedDate = this.task.dateOfCreation
       ? this.task.dateOfCreation.substring(0, 10)
-      : '';
+      : null;
       this.form.patchValue({
         title: this.task.title,
         description: this.task.description,
         dateOfCreation: formattedDate,
         completed: this.task.completed
-       
+
       });
     }
   }
@@ -49,7 +49,7 @@ export class TaskUpdateComponent {
     this.taskService.updateTask(updatedTask).subscribe({
       next: (task) => {
         this.taskUpdated.emit(task);
-       
+
       },
       error: (err) => {
         console.error('Error updating task:', err);

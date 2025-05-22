@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Application.Auth.Commands.LoginUser;
 using Application.Auth.Commands.RegisterUser;
 using MediatR;
@@ -42,13 +43,29 @@ namespace WebAPI.Controllers
         
         [Authorize]
         [HttpGet("user-profile")]
-        public IActionResult GetCurrentUser()
+        public IActionResult CurrentUser()
+        {
+           return Ok(new
+           {
+               Name = User.FindFirst(ClaimTypes.Name)?.Value
+           });
+        }
+        
+        [Authorize]
+        [HttpGet("isAuthenticated")]
+        public IActionResult IsAuthenticated()
         {
             return Ok(new
             {
-                Email = User.Identity?.Name, 
                 Authenticated = true
             });
+        }
+        
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("access_token");
+            return Ok(new { message = "Logged out" });
         }
         
     }

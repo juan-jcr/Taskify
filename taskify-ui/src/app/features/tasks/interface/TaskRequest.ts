@@ -5,3 +5,4 @@ export interface TaskRequest {
   dateOfCreation:null | string;
   completed: boolean;
 }
+
