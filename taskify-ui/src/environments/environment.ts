@@ -1,3 +1,3 @@
 export const environment = {
-  apiUrl: ' http://localhost:5146/api',
+  apiUrl: 'https://taskifyapi.somee.com/api',
 }
