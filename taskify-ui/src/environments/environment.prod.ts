@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'https://taskifyapi.somee.com/api'
+  apiUrl: 'https://localhost:7028/api'
 };
