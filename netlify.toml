@@ -1,0 +1,9 @@
+[build]
+base = "taskify-ui"
+command = "ng build --configuration production"
+publish = "dist/taskify-ui/browser"
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200

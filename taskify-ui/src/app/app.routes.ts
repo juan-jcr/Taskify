@@ -4,6 +4,8 @@ import { RegisterComponent } from './features/auth/pages/register/register.compo
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AboutComponent } from './features/about/about/about.component';
 import { PublicGuard } from './shared/guard/public.guard';
+import AuthLayoutComponent from './features/auth/layout/auth.layout.component';
+import TasksPageComponent from './features/tasks/pages/tasks-page/tasks.component';
 
 
 export const routes: Routes = [
@@ -19,7 +21,7 @@ export const routes: Routes = [
       {path: '**', redirectTo: '/'}   ]
   },
   {
-    path: 'home', loadComponent: () => 
+    path: 'home', loadComponent: () =>
       import('./features/tasks/pages/tasks-page/tasks.component'), canActivate: [AuthGuard],
   },
   {
