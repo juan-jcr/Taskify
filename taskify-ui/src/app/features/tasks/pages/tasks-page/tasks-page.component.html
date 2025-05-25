@@ -12,6 +12,7 @@
               [tasks]="tasks()"
               [loading]="loading()"
               [error]="errorMessage()"
+              [activeTask]="selectedTask()"
               (taskSelected)="onTaskSelected($event)"
               (taskUpdated)="onTaskUpdated($event)"
               (deleteTask)="onDeleteTask($event)"

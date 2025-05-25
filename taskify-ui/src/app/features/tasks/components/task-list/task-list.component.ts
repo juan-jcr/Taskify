@@ -1,13 +1,13 @@
 import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {TaskRequest} from '../../interface/TaskRequest';
-import {DatePipe} from '@angular/common';
+import {DatePipe, NgClass} from '@angular/common';
 import {TaskService} from '../../service/task.service';
 
 
 
 @Component({
   selector: 'app-task-list',
-  imports: [DatePipe],
+  imports: [DatePipe, NgClass],
   templateUrl: './task-list.component.html',
 })
 export class TaskListComponent {
@@ -15,6 +15,7 @@ export class TaskListComponent {
   @Input() tasks: TaskRequest[] = [];
   @Input() loading: boolean = false;
   @Input() error: string | null = null;
+  @Input() activeTask: TaskRequest | null = null;
 
   @Output() taskSelected = new EventEmitter<TaskRequest>();
   @Output() taskUpdated = new EventEmitter<TaskRequest>();
@@ -22,6 +23,10 @@ export class TaskListComponent {
 
   selectTask(task: TaskRequest) {
     this.taskSelected.emit(task);
+  }
+
+  isActive(task: TaskRequest): boolean {
+    return this.activeTask?.id === task.id;
   }
 
   onToggleTask(task: TaskRequest) {
@@ -40,8 +45,4 @@ export class TaskListComponent {
       error: error => this.error = error,
     });
   }
-
-
-
-
 }

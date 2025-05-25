@@ -3,7 +3,11 @@
 } @else if (error){
 <p class="text-red-500 text-center">{{ error }}</p>
 } @else { @for (task of tasks; track task.id){
-<div class="p-3 mt-1 bg-white shadow rounded-md cursor-pointer" (click)="selectTask(task)">
+<div class="p-3 mt-1  shadow rounded-md cursor-pointer" (click)="selectTask(task)"
+     [ngClass]="{
+      'bg-gray-100': isActive(task),
+      'bg-white': !isActive(task)
+    }">
   <div class="flex flex-row justify-between items-center">
     <div class="flex gap-2 h-full">
       <input type="checkbox" [checked]="task.completed" (change)="onToggleTask(task)"
