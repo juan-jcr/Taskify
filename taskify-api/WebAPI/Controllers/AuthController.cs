@@ -35,7 +35,7 @@ namespace WebAPI.Controllers
             {
                 HttpOnly = true,
                 Secure = true, 
-                SameSite = SameSiteMode.Lax,
+                SameSite = SameSiteMode.None,
                 Expires = DateTimeOffset.UtcNow.AddHours(1)
             });
             return Ok(new { message = "Login successful" });
@@ -64,7 +64,14 @@ namespace WebAPI.Controllers
         [HttpPost("logout")]
         public IActionResult Logout()
         {
-            Response.Cookies.Delete("access_token");
+            Response.Cookies.Delete("access_token", new CookieOptions
+            {
+                HttpOnly = true,
+                Secure = true,
+                SameSite = SameSiteMode.None,
+                Expires = DateTimeOffset.UtcNow.AddDays(-1) 
+            });
+
             return Ok(new { message = "Logged out" });
         }
         

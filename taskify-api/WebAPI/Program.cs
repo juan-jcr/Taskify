@@ -22,8 +22,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("NewPolicy", policy =>
     {
         policy.WithOrigins(
-            "http://localhost:4200",    // Angular local
-            "http://web:4200"           // Contenedor UI
+            "https://taskifyone.netlify.app",
+            "http://localhost:4200"
         )
             .AllowAnyHeader()
             .AllowAnyMethod()

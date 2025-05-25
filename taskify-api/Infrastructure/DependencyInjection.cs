@@ -16,7 +16,7 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure(
             this IServiceCollection services, IConfiguration configuration)
-        {
+        {  
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
@@ -27,15 +27,11 @@ namespace Infrastructure
             
             services.AddHttpContextAccessor();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
-
-            services.AddAuthentication( option =>
+            
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
                 {
-                    option.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    option.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer("Bearer",option =>
-                {
-                    option.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
+                    options.Events = new Microsoft.AspNetCore.Authentication.JwtBearer.JwtBearerEvents
                     {
                         OnMessageReceived = context =>
                         {
@@ -48,9 +44,9 @@ namespace Infrastructure
                         }
                     };
                     
-                    option.RequireHttpsMetadata = false;
-                    option.SaveToken = true;
-                    option.TokenValidationParameters = new TokenValidationParameters
+                    options.RequireHttpsMetadata = true;
+                    options.SaveToken = true;
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
                         ValidateIssuer = false,
                         ValidateAudience = false,
@@ -61,7 +57,7 @@ namespace Infrastructure
                             (Encoding.UTF8.GetBytes(configuration["Jwt:Key"]!))
                     };
                 });
-            
+
 
             return services;
         }
