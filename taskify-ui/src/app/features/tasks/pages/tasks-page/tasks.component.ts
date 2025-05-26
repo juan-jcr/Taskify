@@ -47,11 +47,11 @@ export default class TasksPageComponent implements OnInit {
   }
   onTaskUpdated(updatedTask: TaskRequest) {
     this.tasks.update(tasks => tasks.map(t => t.id === updatedTask.id ? updatedTask : t));
-    this.selectedTask.set(null);
   }
 
   onDeleteTask(taskId: number) {
     this.tasks.update(tasks => tasks.filter(t => t.id !== taskId));
+    this.selectedTask.set(null);
   }
 
   onTaskSelected(task: TaskRequest) {

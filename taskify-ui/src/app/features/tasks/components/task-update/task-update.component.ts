@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output, SimpleChanges } from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output, signal, SimpleChanges} from '@angular/core';
 import { TaskService } from '../../service/task.service';
 import { TaskRequest } from '../../interface/TaskRequest';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -12,6 +12,8 @@ export class TaskUpdateComponent {
   @Input({required: true}) task: TaskRequest | null = null;
   @Output() closeMenu = new EventEmitter<void>();
   @Output () taskUpdated = new EventEmitter<TaskRequest>();
+  message = signal<null | string>(null);
+  error = signal<null | string>(null);
 
   private readonly taskService = inject(TaskService);
   private readonly fb = inject(FormBuilder);
@@ -39,6 +41,8 @@ export class TaskUpdateComponent {
   }
 
   onSave() {
+    this.error.set(null)
+    this.message.set(null);
     if (this.form.invalid || !this.task) return;
 
     const updatedTask: TaskRequest = {
@@ -48,11 +52,17 @@ export class TaskUpdateComponent {
 
     this.taskService.updateTask(updatedTask).subscribe({
       next: (task) => {
+        this.message.set("Guardado exitosamente")
         this.taskUpdated.emit(task);
-
+        setTimeout(() => {
+          this.message.set(null);
+        }, 3000);
       },
       error: (err) => {
-        console.error('Error updating task:', err);
+        this.error.set("Error updating task");
+        setTimeout(() => {
+          this.error.set(null);
+        }, 3000);
       }
     });
   }

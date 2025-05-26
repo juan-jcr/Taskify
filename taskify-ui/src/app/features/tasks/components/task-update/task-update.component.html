@@ -29,6 +29,12 @@
             placeholder="Nota"></textarea>
         </div>
       </div>
+      @if(error()){
+        <p class="text-red-500">{{error()}}</p>
+      }
+      @if(message()){
+        <p class="text-green-500">{{message()}}</p>
+      }
       <button type="submit"
         class="py-2 w-full bg-violet-100 border text-sm font-bold border-violet-500 text-violet-500 rounded-md cursor-pointer">
         Atualizar
