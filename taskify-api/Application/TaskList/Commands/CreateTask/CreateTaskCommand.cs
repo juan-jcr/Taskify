@@ -1,7 +1,5 @@
 ﻿
-using System.Text.Json.Serialization;
 using Application.Common.DTOs.TaskDTO;
-using Application.Common.Mappings;
 using MediatR;
 
 namespace Application.TaskList.Commands.CreateTask

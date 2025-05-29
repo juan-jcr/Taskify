@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  angular-app:
+    build:
+      context: ./taskify-ui
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./taskify-ui:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    restart: unless-stopped
+
+  aspnet-api:
+    build:
+      context: ./taskify-api
+      dockerfile: Dockerfile
+    ports:
+      - "3000:8080"
+    restart: unless-stopped
+
