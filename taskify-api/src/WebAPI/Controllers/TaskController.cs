@@ -12,7 +12,6 @@ namespace WebAPI.Controllers;
 [ApiController]
 [Authorize]
 [Route("api/tasks")]
-
 public class TaskController : ControllerBase
 {   
    private readonly IMediator _mediator;
@@ -58,7 +57,5 @@ public class TaskController : ControllerBase
       var tarea = await _mediator.Send(new GetTaskByIdQuery(id));
       return Ok(tarea);
    }
-
-
 }
 

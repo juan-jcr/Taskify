@@ -7,7 +7,10 @@ public class UpdateTaskValidator : AbstractValidator<UpdateTaskCommand>
 {
    public UpdateTaskValidator()
    { 
-      RuleFor(task => task.Id).NotEmpty().WithMessage("Id cannot be null");
+      RuleFor(task => task.Id)
+         .GreaterThan(0)
+         .WithMessage("Id must be greater than zero");
+
 
       RuleFor(task => task.Title).NotEmpty().WithMessage("Title is required");
       RuleFor(task => task.Title).MaximumLength(60).WithMessage("The title must be less than 60 characters");
