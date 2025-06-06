@@ -30,7 +30,16 @@ Este desafío es un sistema de gestión de tareas (CRUD) desarrollado con C#, AS
 2. Validar el correo registrado por el usuario
 3. Agregar test unitarios
 
+### Instalación
 
+-- clonar repositorio
+-- instalar npm install
+-- docker-compose up sqlserver -d
+
+dotnet ef migrations add FirstMigration --project ../Infrastructure --startup-project . --output-dir Persistence/Migrations
+dotnet ef database update --project ../Infrastructure --startup-project . 
+
+docker-compose up --build
 #### Autor
 
 ### Juan Antonio Castañeda Ramirez </h2>
