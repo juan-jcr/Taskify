@@ -12,34 +12,27 @@ export class TaskAddComponent {
   private readonly taskService = inject(TaskService);
   private readonly taskBuilder = inject(FormBuilder);
   @Output() loadTask = new EventEmitter<void>();
-  errorMessage = signal<null | string>(null);
-
 
   taskForm: FormGroup = this.taskBuilder.group({
     title: ['', Validators.required],
     description: [''],
-    dateOfCreation: [null]
+    dateOfCreation: ['', Validators.required],
   });
 
+  addTask = false;
   submit() {
+    this.addTask = true;
+
     if (this.taskForm.invalid) {
       return;
     }
-    this.errorMessage.set('');
-
     const taskRequest: TaskRequest = this.taskForm.value;
 
     this.taskService.addTask(taskRequest).subscribe({
       next: () => {
         this.loadTask.emit();
         this.taskForm.reset();
-      },
-      error: () => {
-        this.errorMessage.set('error occurred');
       }
     })
   }
-
-
-
 }

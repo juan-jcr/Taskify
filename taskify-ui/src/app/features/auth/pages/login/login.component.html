@@ -6,25 +6,21 @@
     Inicie sesión si ya tiene una cuenta.
   </p>
 
-  @if(errorMessage()){
-    <p class="text-red-500">{{errorMessage()}}</p>
-  }
-
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mb-4">
     <!-- Email Input -->
     <div class="mb-3">
       <input
         type="email"
         formControlName="email"
-        [class.border-red-500]="email?.invalid && submitted"
+        [class.border-red-500]="email?.invalid && submitted()"
         class="w-full p-3 rounded-lg border border-gray-300 outline-none text-gray-800 placeholder-gray-600 focus:border-blue-500"
         placeholder="Email"
       />
 
-      @if (email?.errors?.['required'] && submitted) {
+      @if (email?.errors?.['required'] && submitted()) {
         <p class="text-red-500 text-sm">Email es requerido</p>
       }
-      @if (email?.errors?.['email'] && submitted) {
+      @if (email?.errors?.['email'] && submitted()) {
         <p class="text-red-500 text-sm">Email no válido</p>
       }
     </div>
@@ -33,12 +29,12 @@
       <input
         type="password"
         formControlName="password"
-        [class.border-red-500]="password?.invalid && submitted"
+        [class.border-red-500]="password?.invalid && submitted()"
         class="w-full p-3 rounded-lg border border-gray-300 outline-none text-gray-800 placeholder-gray-600 focus:border-blue-500"
         placeholder="Contraseña"
       />
 
-      @if (password?.errors?.['required'] && submitted) {
+      @if (password?.errors?.['required'] && submitted()) {
         <p class="text-red-500 text-sm mt-1">Contraseña es requerido</p>
       }
     </div>

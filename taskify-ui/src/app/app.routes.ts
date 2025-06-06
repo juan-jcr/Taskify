@@ -3,20 +3,17 @@ import LoginComponent from './features/auth/pages/login/login.component';
 import { RegisterComponent } from './features/auth/pages/register/register.component';
 import { AuthGuard } from './shared/guard/auth.guard';
 import { AboutComponent } from './features/about/about/about.component';
-import { PublicGuard } from './shared/guard/public.guard';
-import AuthLayoutComponent from './features/auth/layout/auth.layout.component';
-import TasksPageComponent from './features/tasks/pages/tasks-page/tasks.component';
-
 
 export const routes: Routes = [
   {
+
     path: '', component: AboutComponent
   },
   {
     path: 'auth',
     loadComponent: () => import('./features/auth/layout/auth.layout.component'),
     children: [
-      {path: 'login', component: LoginComponent, canActivate : [PublicGuard]},
+      {path: 'login', component: LoginComponent},
       {path: 'register', component: RegisterComponent},
       {path: '**', redirectTo: '/'}   ]
   },

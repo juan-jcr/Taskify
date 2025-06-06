@@ -1,13 +1,9 @@
 <form [formGroup]="taskForm" (ngSubmit)="submit()" class="mb-5">
-  @if(errorMessage()){
-  <p class="text-red-500">{{ errorMessage() }}</p>
-  }
-
   <div class="w-full rounded-md border border-gray-200 bg-white shadow-sm">
     <div
       class="border-b border-gray-400"
       [class.border-red-500]="
-        taskForm.get('title')?.invalid && taskForm.get('title')?.touched
+        taskForm.get('title')?.invalid && addTask
       "
     >
       <div
@@ -42,7 +38,10 @@
         <input
           type="date"
           formControlName="dateOfCreation"
-          class="text-gray-400 text-sm outline-none"
+          class="text-gray-400 text-sm outline-none border-2"
+          [class.border-red-500]="
+          taskForm.get('dateOfCreation')?.invalid && addTask
+      "
         />
       </div>
     </div>

@@ -19,6 +19,21 @@ services:
       context: ./taskify-api
       dockerfile: Dockerfile
     ports:
-      - "3000:8080"
+      - "5146:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=TaskifyDev;User Id=sa;Password=GaTo2850;TrustServerCertificate=True;
+    depends_on:
+      - sqlserver
+    restart: unless-stopped
+
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=GaTo2850
     restart: unless-stopped
 

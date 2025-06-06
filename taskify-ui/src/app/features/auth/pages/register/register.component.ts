@@ -2,7 +2,6 @@ import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RegisterRequest } from '../../interface/register.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -20,38 +19,31 @@ export class RegisterComponent {
     password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
-  successMessage = signal<string>('');
-  errorMessage = signal<string>('');
-  isLoading = signal<boolean>(false);
+  readonly isLoading = signal(false);
+  readonly submitted = signal(false);
+  readonly successMessage = signal<string | null>(null);
 
-  registered = false;
+  register(): void {
+    this.submitted.set(true);
 
-  register(){
-    this.registered = true;
-
-    if(this.registerForm.invalid){
+    if (this.registerForm.invalid || this.isLoading()) {
       return;
     }
 
-    this.errorMessage.set('');
-    this.successMessage.set('');
-
-    if (this.isLoading()) return;
     this.isLoading.set(true);
+    this.successMessage.set(null);
 
-    const credentials: RegisterRequest = this.registerForm.value;
+    const credentials = this.registerForm.value;
 
-    this.authService.registerUser(credentials).subscribe({
+    this.authService.register(credentials).subscribe({
       next: () => {
         this.successMessage.set('¡Registro exitoso!');
         this.registerForm.reset();
+        this.submitted.set(false);
       },
-      error : (error) => {
-        this.errorMessage.set(error);
-        this.isLoading.set(false);
-      },
-      complete: () => {this.isLoading.set(false);}
-    })
+      error: () => this.isLoading.set(false),
+      complete: () => this.isLoading.set(false)
+    });
   }
 
   get name (){

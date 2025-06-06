@@ -15,36 +15,37 @@ import {UserRequest} from '../../../auth/interface/user.interface';
   imports: [TaskListComponent, TaskUpdateComponent, AsideProfileComponent, DatePipe, TaskAddComponent],
   templateUrl: './tasks-page.component.html',
 })
-export default class TasksPageComponent implements OnInit {
+export default class TasksPageComponent implements OnInit{
   private readonly taskService = inject(TaskService);
   private readonly authService = inject(AuthService);
 
   tasks = signal<TaskRequest[]>([]);
   loading = signal(false);
-  errorMessage = signal<null | string>(null);
   selectedTask = signal<TaskRequest | null>(null);
   userName: string = '';
   date = new Date();
 
-  constructor() {
-    this.loadTasks();
+  ngOnInit(){
+    this.loadTasks()
+
+    this.authService.getProfileName().subscribe({
+      next: (data: UserRequest) => {
+        this.userName = data.name;
+      }
+    })
   }
 
   loadTasks() {
     this.loading.set(true);
-    this.errorMessage.set(null);
 
     this.taskService.getTasks().subscribe({
       next: tasks => {
         this.tasks.set(tasks);
         this.loading.set(false);
-      },
-      error: () => {
-        this.errorMessage.set("Error loading tasks");
-        this.loading.set(false);
       }
     });
   }
+
   onTaskUpdated(updatedTask: TaskRequest) {
     this.tasks.update(tasks => tasks.map(t => t.id === updatedTask.id ? updatedTask : t));
   }
@@ -62,14 +63,4 @@ export default class TasksPageComponent implements OnInit {
     this.selectedTask.set(null);
   }
 
-  ngOnInit(){
-    this.authService.getProfileName().subscribe({
-      next: (data: UserRequest) => {
-        this.userName = data.name;
-      },
-      error: (err: Error) => {
-        this.errorMessage.set("Error loading user profile name");
-      }
-    })
-  }
 }

@@ -14,6 +14,7 @@ public class CreateTaskValidator : AbstractValidator<CreateTaskCommand>
       RuleFor(task => task.Description)
          .MaximumLength(150)
          .WithMessage("The description must not exceed 150 characters.");
+      RuleFor(task => task.DateOfCreation).NotNull().NotEmpty().WithMessage("Date of creation is required");
 
    }
 }

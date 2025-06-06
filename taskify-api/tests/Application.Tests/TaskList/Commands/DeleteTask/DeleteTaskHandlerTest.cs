@@ -52,6 +52,4 @@ public class DeleteTaskHandlerTest
       _taskRepositoryMock.Verify(r => r.GetByIdAsync(command.Id), Times.Once);
       _taskRepositoryMock.Verify(r => r.DeleteAsync(It.IsAny<TaskEntity>()), Times.Never);
    }
-
-   
 }

@@ -14,43 +14,32 @@ export default class LoginComponent {
 
   private readonly authService = inject(AuthService);
   private readonly formBuilder = inject(FormBuilder);
-  private readonly route = inject(Router);
+  private readonly router = inject(Router);
 
   loginForm : FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]]
   })
 
-  isLoading = signal<boolean>(false);
-  errorMessage = signal<string>('');
+  readonly isLoading = signal(false);
+  readonly submitted = signal(false);
 
-  submitted = false;
 
   onSubmit(){
-
-    this.submitted = true;
-    if (this.loginForm.invalid) {
+    this.submitted.set(true);
+    if (this.loginForm.invalid || this.isLoading()) {
       return;
     }
-    this.errorMessage.set('');
 
-    if (this.isLoading()) return;
     this.isLoading.set(true);
 
     const credentials: LoginRequest = this.loginForm.value
 
     this.authService.login(credentials).subscribe({
-      next: () => {
-        this.route.navigate(['/home'])
-      },
-      error: (err) => {
-        this.errorMessage.set(err);
-        this.isLoading.set(false);
-      },
-      complete: () => {
-        this.isLoading.set(false);
-      }
-  });
+      next: () => this.router.navigate(['/home']),
+      error: () => this.isLoading.set(false),
+      complete: () => this.isLoading.set(false)
+    });
   }
 
   get email() {

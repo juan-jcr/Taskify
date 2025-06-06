@@ -14,7 +14,6 @@ export class TaskListComponent {
   private readonly taskService = inject(TaskService);
   @Input() tasks: TaskRequest[] = [];
   @Input() loading: boolean = false;
-  @Input() error: string | null = null;
   @Input() activeTask: TaskRequest | null = null;
 
   @Output() taskSelected = new EventEmitter<TaskRequest>();
@@ -33,16 +32,14 @@ export class TaskListComponent {
     const updatedTask = { ...task, completed: !task.completed };
 
     this.taskService.updateTask(updatedTask).subscribe({
-      next: () => this.taskUpdated.emit(updatedTask),
-      error: error => this.error = error,
+      next: () => this.taskUpdated.emit(updatedTask)
     });
   }
 
   onDeleteTask(event: Event, taskId: number) {
     event.stopPropagation();
     this.taskService.deleteTask(taskId).subscribe({
-      next: () => this.deleteTask.emit(taskId),
-      error: error => this.error = error,
+      next: () => this.deleteTask.emit(taskId)
     });
   }
 }

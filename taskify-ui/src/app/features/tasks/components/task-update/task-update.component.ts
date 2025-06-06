@@ -13,7 +13,6 @@ export class TaskUpdateComponent {
   @Output() closeMenu = new EventEmitter<void>();
   @Output () taskUpdated = new EventEmitter<TaskRequest>();
   message = signal<null | string>(null);
-  error = signal<null | string>(null);
 
   private readonly taskService = inject(TaskService);
   private readonly fb = inject(FormBuilder);
@@ -21,15 +20,14 @@ export class TaskUpdateComponent {
   form: FormGroup = this.fb.group({
     title: ['', Validators.required],
     description: [''],
-    dateOfCreation: [null],
+    dateOfCreation: ['', Validators.required],
     completed: [false]
   });
 
   ngOnChanges(changes: SimpleChanges) {
     if (this.task) {
-      const formattedDate = this.task.dateOfCreation
-      ? this.task.dateOfCreation.substring(0, 10)
-      : null;
+      const formattedDate = this.task.dateOfCreation.substring(0, 10)
+
       this.form.patchValue({
         title: this.task.title,
         description: this.task.description,
@@ -40,8 +38,10 @@ export class TaskUpdateComponent {
     }
   }
 
+  updateTask = false;
+
   onSave() {
-    this.error.set(null)
+    this.updateTask =  true;
     this.message.set(null);
     if (this.form.invalid || !this.task) return;
 
@@ -57,16 +57,8 @@ export class TaskUpdateComponent {
         setTimeout(() => {
           this.message.set(null);
         }, 3000);
-      },
-      error: (err) => {
-        this.error.set("Error updating task");
-        setTimeout(() => {
-          this.error.set(null);
-        }, 3000);
       }
     });
   }
-
-
 
 }
