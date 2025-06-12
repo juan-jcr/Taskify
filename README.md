@@ -33,9 +33,9 @@ Este desafío es un sistema de gestión de tareas (CRUD) desarrollado con C#, AS
    ### aplicacación
    https://taskifyone.netlify.app/
 
-### Clonar 
+### Clonar utilizando git 
 ```
-https://github.com/juan-jcr/Taskify.git
+git clone https://github.com/juan-jcr/Taskify.git
 ```
 
 ### Instalación
@@ -55,7 +55,8 @@ dotnet ef migrations add FirstMigration --project ../Infrastructure --startup-pr
 ```
 dotnet ef database update --project ../Infrastructure --startup-project .
 ```
-### construir las imagenes que faltan
+### Construir las imagenes que faltan
+```
 docker-compose up --build
 ```
 
