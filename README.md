@@ -33,12 +33,16 @@ Este desafío es un sistema de gestión de tareas (CRUD) desarrollado con C#, AS
    ### aplicacación
    https://taskifyone.netlify.app/
 
+### Clonar 
+```
+https://github.com/juan-jcr/Taskify.git
+```
+
 ### Instalación
+
 ```
 npm install
 ```
--- clonar repositorio '''
--- instalar npm install
 Ejecutar y crear la imagen sqlserver donde está el archivo docker-compose
 ```
 docker-compose up sqlserver -d
@@ -52,8 +56,7 @@ dotnet ef migrations add FirstMigration --project ../Infrastructure --startup-pr
 dotnet ef database update --project ../Infrastructure --startup-project .
 ```
 ### construir las imagenes que faltan
-```
-docker-compose up --build y deben verificar que deben haber tres imágenes dentro de un contenedor
+docker-compose up --build
 ```
 
 #### Autor
