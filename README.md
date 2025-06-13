@@ -20,7 +20,7 @@ Este desafío es un sistema de gestión de tareas (CRUD) desarrollado con C#, AS
 1. Crear, listar, editar y eliminar tareas.
 2. Aplicación de patrones CQRS con MediatR
 3. Validación con FluentValidation
-4. Separación de capas bajo los principios de Clean Arquitecture.
+4. Separación de capas bajo  Clean Arquitecture.
 5. API RESTful y consumo desde Angular
 
 
